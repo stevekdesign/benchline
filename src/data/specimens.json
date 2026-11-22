@@ -1,0 +1,1651 @@
+{
+  "demoClock": "08:42",
+  "note": "Sample data only. No real patients, staff or orders.",
+  "stations": [
+    {
+      "id": "recv",
+      "name": "Receiving",
+      "type": "receiving",
+      "detail": "Receiving \u00b7 not yet placed"
+    },
+    {
+      "id": "cbench",
+      "name": "Chemistry bench",
+      "type": "bench",
+      "detail": "Chemistry bench \u00b7 centrifuge"
+    },
+    {
+      "id": "bf",
+      "name": "Body fluids bench",
+      "type": "bench",
+      "detail": "Body fluids bench"
+    },
+    {
+      "id": "chemA",
+      "name": "Chemistry A",
+      "type": "analyzer",
+      "status": "running",
+      "detail": "Chemistry A"
+    },
+    {
+      "id": "chemB",
+      "name": "Chemistry B",
+      "type": "analyzer",
+      "status": "down",
+      "downSince": "07:52",
+      "detail": "Chemistry B"
+    },
+    {
+      "id": "heme",
+      "name": "Hematology 1",
+      "type": "analyzer",
+      "status": "running",
+      "detail": "Hematology 1"
+    },
+    {
+      "id": "fridge",
+      "name": "Fridge 2",
+      "type": "fridge",
+      "detail": "Fridge 2 \u00b7 held from Chem B"
+    }
+  ],
+  "specimens": [
+    {
+      "orderId": "24-118342",
+      "test": "Basic metabolic panel",
+      "priority": "STAT",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 1, position 1",
+      "orderingUnit": "ED, Bay 4",
+      "receivedAt": "08:14",
+      "status": "critical-callback-due",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": {
+        "analyte": "Potassium",
+        "value": 6.8,
+        "unit": "mmol/L",
+        "criticalLimit": "> 6.0"
+      },
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:02",
+          "where": "ED, Bay 4",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:14",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:16",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:20",
+          "where": "Chemistry A \u00b7 Rack 1, position 1"
+        },
+        {
+          "type": "resulted",
+          "at": "08:39",
+          "where": "Chemistry A",
+          "critical": true
+        }
+      ]
+    },
+    {
+      "orderId": "24-118312",
+      "test": "Hemoglobin",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 2, position 2",
+      "orderingUnit": "ICU 3, Bed 2",
+      "receivedAt": "07:58",
+      "status": "critical-callback-due",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": {
+        "analyte": "Hemoglobin",
+        "value": 6.1,
+        "unit": "g/dL",
+        "criticalLimit": "< 7.0"
+      },
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:46",
+          "where": "ICU 3, Bed 2",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:58",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:00",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:04",
+          "where": "Hematology 1 \u00b7 Rack 2, position 2"
+        },
+        {
+          "type": "resulted",
+          "at": "08:30",
+          "where": "Hematology 1",
+          "critical": true
+        }
+      ]
+    },
+    {
+      "orderId": "24-118301",
+      "test": "Pleural fluid cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "4 West, Rm 412",
+      "receivedAt": "07:31",
+      "status": "waiting",
+      "overTurnaround": true,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:19",
+          "where": "4 West, Rm 412",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:31",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:33",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118295",
+      "test": "CSF cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "Neuro, Rm 220",
+      "receivedAt": "07:36",
+      "status": "waiting",
+      "overTurnaround": true,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:24",
+          "where": "Neuro, Rm 220",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:36",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:38",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118284",
+      "test": "Lipid panel",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "Outpatient",
+      "receivedAt": "07:22",
+      "status": "held",
+      "overTurnaround": true,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:10",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:22",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:24",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118288",
+      "test": "Comprehensive metabolic panel",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "3 East, Rm 305",
+      "receivedAt": "07:27",
+      "status": "held",
+      "overTurnaround": true,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:15",
+          "where": "3 East, Rm 305",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:27",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:29",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118290",
+      "test": "Comprehensive metabolic panel",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "4 West, Rm 418",
+      "receivedAt": "07:30",
+      "status": "held",
+      "overTurnaround": true,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:18",
+          "where": "4 West, Rm 418",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:30",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:32",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118355",
+      "test": "CBC with differential",
+      "priority": "STAT",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 3, position 8",
+      "orderingUnit": "ED, Bay 7",
+      "receivedAt": "08:26",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:14",
+          "where": "ED, Bay 7",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:26",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:28",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:32",
+          "where": "Hematology 1 \u00b7 Rack 3, position 8"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118358",
+      "test": "CBC with differential",
+      "priority": "STAT",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 4, position 9",
+      "orderingUnit": "ED, Bay 2",
+      "receivedAt": "08:29",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:17",
+          "where": "ED, Bay 2",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:29",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:31",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:35",
+          "where": "Hematology 1 \u00b7 Rack 4, position 9"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118361",
+      "test": "Troponin I",
+      "priority": "STAT",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 5, position 10",
+      "orderingUnit": "ED, Bay 9",
+      "receivedAt": "08:33",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:21",
+          "where": "ED, Bay 9",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:33",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:35",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:39",
+          "where": "Chemistry A \u00b7 Rack 5, position 10"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118364",
+      "test": "Glucose",
+      "priority": "STAT",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 1, position 11",
+      "orderingUnit": "ICU 3, Bed 5",
+      "receivedAt": "08:35",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:23",
+          "where": "ICU 3, Bed 5",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:35",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:37",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:41",
+          "where": "Chemistry A \u00b7 Rack 1, position 11"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118366",
+      "test": "Magnesium",
+      "priority": "STAT",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 2, position 12",
+      "orderingUnit": "ICU 3, Bed 1",
+      "receivedAt": "08:36",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:24",
+          "where": "ICU 3, Bed 1",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:36",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:38",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:42",
+          "where": "Chemistry A \u00b7 Rack 2, position 12"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118370",
+      "test": "Lactate",
+      "priority": "STAT",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 3, position 13",
+      "orderingUnit": "ED, Bay 4",
+      "receivedAt": "08:39",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:27",
+          "where": "ED, Bay 4",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:39",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:41",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:45",
+          "where": "Chemistry A \u00b7 Rack 3, position 13"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118372",
+      "test": "Basic metabolic panel",
+      "priority": "STAT",
+      "stationId": "recv",
+      "locationType": "receiving",
+      "position": null,
+      "orderingUnit": "ED, Bay 11",
+      "receivedAt": "08:40",
+      "status": "received",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:28",
+          "where": "ED, Bay 11",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:40",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118367",
+      "test": "PT / INR",
+      "priority": "Routine",
+      "stationId": "recv",
+      "locationType": "receiving",
+      "position": null,
+      "orderingUnit": "3 East, Rm 310",
+      "receivedAt": "08:38",
+      "status": "received",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:26",
+          "where": "3 East, Rm 310",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:38",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118374",
+      "test": "Urinalysis",
+      "priority": "Routine",
+      "stationId": "recv",
+      "locationType": "receiving",
+      "position": null,
+      "orderingUnit": "Outpatient",
+      "receivedAt": "08:41",
+      "status": "received",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:29",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:41",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118369",
+      "test": "Comprehensive metabolic panel",
+      "priority": "Routine",
+      "stationId": "cbench",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "4 West, Rm 402",
+      "receivedAt": "08:34",
+      "status": "prepping",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:22",
+          "where": "4 West, Rm 402",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:34",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:35",
+          "where": "Chemistry bench \u00b7 centrifuge"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118371",
+      "test": "Hepatic function panel",
+      "priority": "Routine",
+      "stationId": "cbench",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "3 East, Rm 301",
+      "receivedAt": "08:36",
+      "status": "prepping",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:24",
+          "where": "3 East, Rm 301",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:36",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:37",
+          "where": "Chemistry bench \u00b7 centrifuge"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118373",
+      "test": "Lipase",
+      "priority": "Routine",
+      "stationId": "cbench",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "ED, Bay 6",
+      "receivedAt": "08:37",
+      "status": "prepping",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:25",
+          "where": "ED, Bay 6",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:37",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:38",
+          "where": "Chemistry bench \u00b7 centrifuge"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118305",
+      "test": "Synovial fluid cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "Ortho, Rm 118",
+      "receivedAt": "07:55",
+      "status": "waiting",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:43",
+          "where": "Ortho, Rm 118",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:55",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:57",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118309",
+      "test": "Peritoneal fluid cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "4 West, Rm 409",
+      "receivedAt": "08:03",
+      "status": "waiting",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:51",
+          "where": "4 West, Rm 409",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:03",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:05",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118315",
+      "test": "Pleural fluid cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "ICU 3, Bed 4",
+      "receivedAt": "08:10",
+      "status": "waiting",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:58",
+          "where": "ICU 3, Bed 4",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:10",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:12",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118318",
+      "test": "CSF cell count",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "ED, Bay 3",
+      "receivedAt": "08:15",
+      "status": "waiting",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:03",
+          "where": "ED, Bay 3",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:15",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:17",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118325",
+      "test": "Synovial fluid crystals",
+      "priority": "Routine",
+      "stationId": "bf",
+      "locationType": "bench",
+      "position": null,
+      "orderingUnit": "Ortho, Rm 121",
+      "receivedAt": "08:22",
+      "status": "waiting",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:10",
+          "where": "Ortho, Rm 121",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:22",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:24",
+          "where": "Body fluids bench"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118292",
+      "test": "Basic metabolic panel",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "3 East, Rm 308",
+      "receivedAt": "07:45",
+      "status": "held",
+      "overTurnaround": false,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:33",
+          "where": "3 East, Rm 308",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:45",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:47",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118297",
+      "test": "Hepatic function panel",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "Outpatient",
+      "receivedAt": "07:49",
+      "status": "held",
+      "overTurnaround": false,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:37",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:49",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:51",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118299",
+      "test": "Magnesium",
+      "priority": "Routine",
+      "stationId": "fridge",
+      "locationType": "fridge",
+      "position": null,
+      "orderingUnit": "4 West, Rm 415",
+      "receivedAt": "07:51",
+      "status": "held",
+      "overTurnaround": false,
+      "heldFromStationId": "chemB",
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:39",
+          "where": "4 West, Rm 415",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:51",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:53",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "moved",
+          "at": "07:53",
+          "where": "Fridge 2, shelf 1",
+          "note": "Chemistry B down \u00b7 held"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118277",
+      "test": "Lipase",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 3, position 8",
+      "orderingUnit": "3 East, Rm 302",
+      "receivedAt": "07:40",
+      "status": "resulted",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:28",
+          "where": "3 East, Rm 302",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "07:40",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "07:42",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "07:46",
+          "where": "Chemistry A \u00b7 Rack 3, position 8"
+        },
+        {
+          "type": "resulted",
+          "at": "08:01",
+          "where": "Chemistry A"
+        },
+        {
+          "type": "verified",
+          "at": "08:03",
+          "where": "Chemistry A",
+          "by": "K. Lee, CLS"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118330",
+      "test": "Comprehensive metabolic panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 4, position 9",
+      "orderingUnit": "4 West, Rm 406",
+      "receivedAt": "08:05",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:53",
+          "where": "4 West, Rm 406",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:05",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:07",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:11",
+          "where": "Chemistry A \u00b7 Rack 4, position 9"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118333",
+      "test": "Basic metabolic panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 5, position 10",
+      "orderingUnit": "3 East, Rm 311",
+      "receivedAt": "08:08",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:56",
+          "where": "3 East, Rm 311",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:08",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:10",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:14",
+          "where": "Chemistry A \u00b7 Rack 5, position 10"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118337",
+      "test": "TSH",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 1, position 11",
+      "orderingUnit": "Outpatient",
+      "receivedAt": "08:12",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:00",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:12",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:14",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:18",
+          "where": "Chemistry A \u00b7 Rack 1, position 11"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118340",
+      "test": "Amylase",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 2, position 12",
+      "orderingUnit": "ED, Bay 8",
+      "receivedAt": "08:13",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:01",
+          "where": "ED, Bay 8",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:13",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:15",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:19",
+          "where": "Chemistry A \u00b7 Rack 2, position 12"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118344",
+      "test": "Comprehensive metabolic panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 3, position 13",
+      "orderingUnit": "ICU 3, Bed 6",
+      "receivedAt": "08:17",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:05",
+          "where": "ICU 3, Bed 6",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:17",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:19",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:23",
+          "where": "Chemistry A \u00b7 Rack 3, position 13"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118346",
+      "test": "Basic metabolic panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 4, position 14",
+      "orderingUnit": "3 East, Rm 306",
+      "receivedAt": "08:19",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:07",
+          "where": "3 East, Rm 306",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:19",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:21",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:25",
+          "where": "Chemistry A \u00b7 Rack 4, position 14"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118350",
+      "test": "Hepatic function panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 5, position 15",
+      "orderingUnit": "4 West, Rm 411",
+      "receivedAt": "08:22",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:10",
+          "where": "4 West, Rm 411",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:22",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:24",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:28",
+          "where": "Chemistry A \u00b7 Rack 5, position 15"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118352",
+      "test": "Lipid panel",
+      "priority": "Routine",
+      "stationId": "chemA",
+      "locationType": "analyzer",
+      "position": "Rack 1, position 16",
+      "orderingUnit": "Outpatient",
+      "receivedAt": "08:24",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:12",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:24",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:26",
+          "where": "Chemistry bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:30",
+          "where": "Chemistry A \u00b7 Rack 1, position 16"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118320",
+      "test": "CBC with differential",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 2, position 17",
+      "orderingUnit": "4 West, Rm 403",
+      "receivedAt": "08:00",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:48",
+          "where": "4 West, Rm 403",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:00",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:02",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:06",
+          "where": "Hematology 1 \u00b7 Rack 2, position 17"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118323",
+      "test": "CBC with differential",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 3, position 18",
+      "orderingUnit": "3 East, Rm 309",
+      "receivedAt": "08:04",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:52",
+          "where": "3 East, Rm 309",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:04",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:06",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:10",
+          "where": "Hematology 1 \u00b7 Rack 3, position 18"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118327",
+      "test": "CBC",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 4, position 19",
+      "orderingUnit": "Outpatient",
+      "receivedAt": "08:07",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:55",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:07",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:09",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:13",
+          "where": "Hematology 1 \u00b7 Rack 4, position 19"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118335",
+      "test": "CBC",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 5, position 20",
+      "orderingUnit": "ED, Bay 10",
+      "receivedAt": "08:11",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "07:59",
+          "where": "ED, Bay 10",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:11",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:13",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:17",
+          "where": "Hematology 1 \u00b7 Rack 5, position 20"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118339",
+      "test": "Reticulocyte count",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 1, position 1",
+      "orderingUnit": "4 West, Rm 417",
+      "receivedAt": "08:14",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:02",
+          "where": "4 West, Rm 417",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:14",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:16",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:20",
+          "where": "Hematology 1 \u00b7 Rack 1, position 1"
+        }
+      ]
+    },
+    {
+      "orderId": "24-118347",
+      "test": "Sed rate (ESR)",
+      "priority": "Routine",
+      "stationId": "heme",
+      "locationType": "analyzer",
+      "position": "Rack 2, position 2",
+      "orderingUnit": "Outpatient",
+      "receivedAt": "08:18",
+      "status": "testing",
+      "overTurnaround": false,
+      "heldFromStationId": null,
+      "criticalResult": null,
+      "callback": null,
+      "timeline": [
+        {
+          "type": "collected",
+          "at": "08:06",
+          "where": "Outpatient",
+          "by": "Nursing"
+        },
+        {
+          "type": "received",
+          "at": "08:18",
+          "where": "Receiving",
+          "by": "K. Lee, CLS"
+        },
+        {
+          "type": "placed",
+          "at": "08:20",
+          "where": "Hematology bench"
+        },
+        {
+          "type": "testing",
+          "at": "08:24",
+          "where": "Hematology 1 \u00b7 Rack 2, position 2"
+        }
+      ]
+    }
+  ]
+}

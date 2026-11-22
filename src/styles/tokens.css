@@ -1,0 +1,75 @@
+/* Benchline design tokens — source: CLAUDE.md "Design tokens".
+   Don't change values without checking with the designer. */
+:root {
+  /* Surfaces & borders */
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-input-border: #cbd5e1;
+  --color-row-zebra: #ebeef3;
+
+  /* Text */
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-strong: #334155;
+
+  /* Brand / primary */
+  --color-brand: #0f766e;
+  --color-brand-hover: #134e4a;
+  /* Brand tints for the location bar (lightest → darkest) */
+  --color-brand-tint-1: #99f6e4;
+  --color-brand-tint-2: #2dd4bf;
+  --color-brand-tint-3: #0f766e;
+  --color-brand-tint-4: #134e4a;
+
+  /* Critical */
+  --color-critical-text: #991b1b;
+  --color-critical-text-strong: #7f1d1d;
+  --color-critical-surface: #fef2f2;
+  --color-critical-border: #fecaca;
+  --color-critical-button: #b91c1c;
+
+  /* Warning / over turnaround */
+  --color-warning-text: #92400e;
+
+  /* STAT badge */
+  --color-stat-text: #9a3412;
+  --color-stat-surface: #ffedd5;
+
+  /* Success */
+  --color-success-text: #166534;
+  --color-success-surface: #dcfce7;
+
+  /* Radius */
+  --radius-card: 12px;
+  --radius-control: 10px; /* inputs & buttons */
+  --radius-small: 8px; /* small buttons */
+  --radius-pill: 999px;
+
+  /* Spacing (multiples of 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --page-padding: 32px;
+  --section-gap: 20px;
+  --content-max-width: 1376px;
+
+  /* Type */
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --font-size-title: 24px; /* page title, 700 */
+  --font-size-section-lg: 17px; /* section titles 15–17px, 600 */
+  --font-size-section-sm: 15px;
+  --font-size-body: 14px; /* body & table */
+  --font-size-label: 13px; /* labels 12–13px */
+  --font-size-label-sm: 12px; /* uppercase table headers */
+  --letter-spacing-caps: 0.05em;
+
+  /* Targets */
+  --target-min: 44px;
+  --target-compact: 36px; /* in-table buttons */
+}

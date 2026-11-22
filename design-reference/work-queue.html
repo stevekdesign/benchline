@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Benchline — Work queue</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F766E}a:hover{color:#134E4A}
+button,input{font-family:inherit}
+table{border-collapse:collapse;width:100%;min-width:1266px;table-layout:fixed}
+th{font-size:12px;font-weight:600;color:#475569;text-transform:uppercase;letter-spacing:0.05em;text-align:left;padding:10px 16px;border-bottom:1px solid #E2E8F0;white-space:nowrap;position:sticky;top:0;z-index:1;background:#FFFFFF}
+td{font-size:14px;padding:12px 16px;white-space:nowrap;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div style="min-height: 980px; background: #F6F7F9; font-family: Inter, system-ui, sans-serif; color: #0F172A; display: flex; flex-direction: column">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; padding: 12px 32px">
+    <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"></path></svg>
+      Benchline
+    </span>
+    <label style="flex: 1 1 320px; max-width: 520px; display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 14px; border: 1px solid #CBD5E1; border-radius: 10px; background: #FFFFFF">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search specimens</span>
+      <input type="search" placeholder="Scan or type order # to find a specimen" style="flex-grow: 1; border: none; outline: none; font-size: 15px; color: #0F172A; background: transparent">
+    </label>
+    <span style="margin-left: auto; font-size: 14px; color: #475569">Core Lab · Day shift · <strong style="color: #0F172A">K. Lee, CLS</strong></span>
+  </header>
+
+  <main style="width: 100%; max-width: 1376px; margin: 0 auto; box-sizing: border-box; padding: 24px 32px 40px; display: flex; flex-direction: column; gap: 20px">
+
+    <section aria-labelledby="where" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+        <h2 id="where" style="margin: 0; font-size: 15px; font-weight: 600">Where the {{ total }} active specimens are</h2>
+        <span style="font-size: 13px; color: #475569">Updated on every scan</span>
+      </div>
+      <div aria-hidden="true" style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px">
+        <sc-for list="{{ places }}" as="p" hint-placeholder-count="4">
+          <div style="{{ p.barStyle }}"></div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 28px">
+        <sc-for list="{{ places }}" as="p" hint-placeholder-count="4">
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #334155">
+            <span style="{{ p.dotStyle }}"></span>{{ p.label }} <strong style="color: #0F172A">{{ p.count }}</strong>
+          </span>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-labelledby="inst" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="inst" style="margin: 0; font-size: 13px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.05em">Instruments &amp; benches · select one to filter the list</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+        <sc-for list="{{ stations }}" as="s" hint-placeholder-count="4">
+          <button aria-pressed="{{ s.active }}" onClick="{{ s.pick }}" style="{{ s.cardStyle }}">
+            <span style="{{ s.nameStyle }}">{{ s.name }}</span>
+            <span style="{{ s.lineStyle }}"><span style="{{ s.dotStyle }}"></span>{{ s.line }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em">{{ listTitle }}</h1>
+        <p style="margin: 0; font-size: 14px; color: #475569; display: flex; align-items: center; gap: 6px">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5"></path><path d="M18 9v12M15 18l3 3 3-3"></path></svg>
+          Sorted most urgent first · filters overlap, so one specimen can be both STAT and awaiting a callback
+        </p>
+      </div>
+      <div role="group" aria-label="Filter" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{ pills }}" as="f" hint-placeholder-count="4">
+          <button aria-pressed="{{ f.active }}" onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }} · {{ f.count }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div tabindex="0" aria-label="Specimen list, scrollable" style="height: 472px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; overflow: auto">
+      <table>
+        <thead>
+          <tr><th style="width: 112px">Order #</th><th>Test</th><th style="width: 104px">Priority</th><th>Location now</th><th>Status</th><th style="width: 104px">Received</th><th style="width: 88px">In lab</th><th style="width: 116px; padding: 10px 12px 10px 4px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Action</span></th></tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="7">
+            <tr style="{{ r.rowStyle }}">
+              <td style="font-family: 'IBM Plex Mono', monospace"><a href="Detail.dc.html" style="font-weight: 500">{{ r.id }}</a></td>
+              <td title="{{ r.test }}">{{ r.test }}</td>
+              <td>
+                <sc-if value="{{ r.stat }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; font-weight: 700; color: #9A3412; background: #FFEDD5; border-radius: 6px; padding: 3px 8px">STAT</span></sc-if>
+                <sc-if value="{{ r.routine }}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; color: #475569">Routine</span></sc-if>
+              </td>
+              <td title="{{ r.where }}">{{ r.where }}</td>
+              <td title="{{ r.status }}"><span style="{{ r.statusStyle }}">{{ r.status }}</span></td>
+              <td style="font-family: 'IBM Plex Mono', monospace; color: #475569">{{ r.recv }}</td>
+              <td style="{{ r.minsStyle }}">{{ r.mins }} min</td>
+              <td style="padding: 8px 12px 8px 4px">
+                <sc-if value="{{ r.crit }}" hint-placeholder-val="{{ false }}"><a href="Callback.dc.html" style="display: inline-flex; align-items: center; height: 36px; padding: 0 10px; border-radius: 8px; background: #B91C1C; color: #FFFFFF; font-size: 13px; font-weight: 600; text-decoration: none">Log callback</a></sc-if>
+              </td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: #475569">Sample data only. No real patients or orders. Every count on this screen is calculated from the same 42 specimens.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'all' };
+    var L = {
+      recv: ['receiving', 'Receiving · not yet placed', 'Receiving'],
+      cbench: ['bench', 'Chemistry bench · centrifuge', 'Chemistry bench'],
+      bf: ['bench', 'Body fluids bench', 'Body fluids bench'],
+      chemA: ['analyzer', 'Chemistry A', 'Chemistry A'],
+      heme: ['analyzer', 'Hematology 1', 'Hematology 1'],
+      fridge: ['fridge', 'Fridge 2 · held from Chem B', 'Fridge 2']
+    };
+    // [order, test, STAT, station, received, kind, critical note]
+    var raw = [
+      ['24-118342','Basic metabolic panel',1,'chemA','08:14','crit','K 6.8'],
+      ['24-118312','Hemoglobin',0,'heme','07:58','crit','Hgb 6.1'],
+      ['24-118301','Pleural fluid cell count',0,'bf','07:31','over'],
+      ['24-118295','CSF cell count',0,'bf','07:36','over'],
+      ['24-118284','Lipid panel',0,'fridge','07:22','overheld'],
+      ['24-118288','Comprehensive metabolic panel',0,'fridge','07:27','overheld'],
+      ['24-118290','Comprehensive metabolic panel',0,'fridge','07:30','overheld'],
+      ['24-118355','CBC with differential',1,'heme','08:26','test'],
+      ['24-118358','CBC with differential',1,'heme','08:29','test'],
+      ['24-118361','Troponin I',1,'chemA','08:33','test'],
+      ['24-118364','Glucose',1,'chemA','08:35','test'],
+      ['24-118366','Magnesium',1,'chemA','08:36','test'],
+      ['24-118370','Lactate',1,'chemA','08:39','test'],
+      ['24-118372','Basic metabolic panel',1,'recv','08:40','recv'],
+      ['24-118367','PT / INR',0,'recv','08:38','recv'],
+      ['24-118374','Urinalysis',0,'recv','08:41','recv'],
+      ['24-118369','Comprehensive metabolic panel',0,'cbench','08:34','bench'],
+      ['24-118371','Hepatic function panel',0,'cbench','08:36','bench'],
+      ['24-118373','Lipase',0,'cbench','08:37','bench'],
+      ['24-118305','Synovial fluid cell count',0,'bf','07:55','wait'],
+      ['24-118309','Peritoneal fluid cell count',0,'bf','08:03','wait'],
+      ['24-118315','Pleural fluid cell count',0,'bf','08:10','wait'],
+      ['24-118318','CSF cell count',0,'bf','08:15','wait'],
+      ['24-118325','Synovial fluid crystals',0,'bf','08:22','wait'],
+      ['24-118292','Basic metabolic panel',0,'fridge','07:45','held'],
+      ['24-118297','Hepatic function panel',0,'fridge','07:49','held'],
+      ['24-118299','Magnesium',0,'fridge','07:51','held'],
+      ['24-118277','Lipase',0,'chemA','07:40','done'],
+      ['24-118330','Comprehensive metabolic panel',0,'chemA','08:05','test'],
+      ['24-118333','Basic metabolic panel',0,'chemA','08:08','test'],
+      ['24-118337','TSH',0,'chemA','08:12','test'],
+      ['24-118340','Amylase',0,'chemA','08:13','test'],
+      ['24-118344','Comprehensive metabolic panel',0,'chemA','08:17','test'],
+      ['24-118346','Basic metabolic panel',0,'chemA','08:19','test'],
+      ['24-118350','Hepatic function panel',0,'chemA','08:22','test'],
+      ['24-118352','Lipid panel',0,'chemA','08:24','test'],
+      ['24-118320','CBC with differential',0,'heme','08:00','test'],
+      ['24-118323','CBC with differential',0,'heme','08:04','test'],
+      ['24-118327','CBC',0,'heme','08:07','test'],
+      ['24-118335','CBC',0,'heme','08:11','test'],
+      ['24-118339','Reticulocyte count',0,'heme','08:14','test'],
+      ['24-118347','Sed rate (ESR)',0,'heme','08:18','test']
+    ];
+    var now = 8 * 60 + 42;
+    var rank = { crit: 0, over: 1, overheld: 1, test: 3, recv: 3, bench: 3, wait: 4, held: 4, done: 5 };
+    this.L = L;
+    this.data = raw.map(function (a) {
+      var t = a[4].split(':');
+      return {
+        id: a[0], test: a[1], stat: !!a[2], station: a[3], place: L[a[3]][0], where: L[a[3]][1],
+        recv: a[4], mins: now - (Number(t[0]) * 60 + Number(t[1])), kind: a[5], note: a[6] || '',
+        crit: a[5] === 'crit', over: a[5] === 'over' || a[5] === 'overheld', fromChemB: a[3] === 'fridge',
+        rank: rank[a[5]] - (a[2] ? 0.5 : 0)
+      };
+    });
+  }
+  renderVals() {
+    var self = this, d = this.data, f = this.state.filter;
+    var count = function (fn) { return d.filter(fn).length; };
+    var tests = {
+      all: function () { return true; },
+      crit: function (x) { return x.crit; },
+      stat: function (x) { return x.stat; },
+      over: function (x) { return x.over; },
+      chemA: function (x) { return x.station === 'chemA'; },
+      chemB: function (x) { return x.fromChemB; },
+      heme: function (x) { return x.station === 'heme'; },
+      bf: function (x) { return x.station === 'bf'; }
+    };
+    var placeDefs = [
+      ['receiving', 'Receiving', '#99F6E4'], ['bench', 'Benches', '#2DD4BF'],
+      ['analyzer', 'Analyzers', '#0F766E'], ['fridge', 'Fridge', '#134E4A']
+    ];
+    var places = placeDefs.map(function (p) {
+      var n = count(function (x) { return x.place === p[0]; });
+      return { label: p[1], count: n,
+        barStyle: 'flex: ' + n + ' 1 0; background: ' + p[2] + ';',
+        dotStyle: 'width: 10px; height: 10px; border-radius: 3px; background: ' + p[2] + ';' };
+    });
+    var st = [
+      ['chemA', 'Chemistry A', 'ok', 'Running · ' + count(tests.chemA) + ' specimens'],
+      ['chemB', 'Chemistry B', 'down', 'Down since 07:52 · ' + count(tests.chemB) + ' held in Fridge 2'],
+      ['heme', 'Hematology 1', 'ok', 'Running · ' + count(tests.heme) + ' specimens'],
+      ['bf', 'Body fluids bench', 'busy', 'Busy · ' + count(tests.bf) + ' waiting']
+    ];
+    var tone = {
+      ok: ['#FFFFFF', '#E2E8F0', '#475569', '#0F172A', '#16A34A'],
+      down: ['#FEF2F2', '#FECACA', '#991B1B', '#7F1D1D', '#DC2626'],
+      busy: ['#FFFFFF', '#E2E8F0', '#475569', '#92400E', '#D97706']
+    };
+    var stations = st.map(function (s) {
+      var c = tone[s[2]], on = f === s[0];
+      return { name: s[1], line: s[3], active: on,
+        pick: function () { self.setState({ filter: on ? 'all' : s[0] }); },
+        cardStyle: 'display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; cursor: pointer; border-radius: 12px; padding: 14px 16px; background: ' + c[0] + '; border: ' + (on ? '2px solid #0F172A' : '1px solid ' + c[1]) + ';',
+        nameStyle: 'font-size: 13px; color: ' + c[2] + ';',
+        lineStyle: 'font-size: 15px; font-weight: 600; color: ' + c[3] + '; display: flex; align-items: center; gap: 8px;',
+        dotStyle: 'width: 8px; height: 8px; border-radius: 50%; background: ' + c[4] + ';' };
+    });
+    var pillDefs = [['all', 'All'], ['crit', 'Critical callback'], ['stat', 'STAT'], ['over', 'Over turnaround']];
+    var pills = pillDefs.map(function (p) {
+      var on = f === p[0];
+      var red = p[0] === 'crit';
+      var style = 'height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; ' +
+        (on ? 'border: 1px solid #0F172A; background: #0F172A; color: #FFFFFF;' : red ? 'border: 1px solid #FECACA; background: #FEF2F2; color: #991B1B;' : 'border: 1px solid #CBD5E1; background: #FFFFFF; color: #0F172A;');
+      return { label: p[1], count: count(tests[p[0]]), active: on, style: style,
+        pick: function () { self.setState({ filter: p[0] }); } };
+    });
+    var matched = d.filter(tests[f]).sort(function (a, b) { return a.rank - b.rank || b.mins - a.mins; });
+    var shownList = matched;
+    var statusFor = function (x) {
+      if (x.kind === 'crit') return ['Critical: ' + x.note + ' · callback due', 'font-size: 13px; font-weight: 600; color: #991B1B;'];
+      if (x.kind === 'over') return ['Waiting · over turnaround', 'font-size: 13px; font-weight: 600; color: #92400E;'];
+      if (x.kind === 'overheld') return ['Held · over turnaround', 'font-size: 13px; font-weight: 600; color: #92400E;'];
+      if (x.kind === 'held') return ['Held · instrument down', 'font-size: 13px; color: #334155;'];
+      if (x.kind === 'recv') return ['Received', 'font-size: 13px; color: #334155;'];
+      if (x.kind === 'bench') return ['Being prepped', 'font-size: 13px; color: #334155;'];
+      if (x.kind === 'wait') return ['Waiting on bench', 'font-size: 13px; color: #334155;'];
+      if (x.kind === 'done') return ['Resulted · verified', 'font-size: 13px; color: #166534;'];
+      return ['Testing', 'font-size: 13px; color: #334155;'];
+    };
+    var rows = shownList.map(function (x, i) {
+      var s = statusFor(x);
+      return { id: x.id, test: x.test, stat: x.stat, routine: !x.stat, where: x.where, recv: x.recv, mins: x.mins, crit: x.crit,
+        status: s[0], statusStyle: s[1],
+        rowStyle: x.crit ? 'background: #FEF2F2;' : (i % 2 === 1 ? 'background: #EBEEF3;' : 'background: #FFFFFF;'),
+        minsStyle: "font-family: 'IBM Plex Mono', monospace;" + (x.over ? ' font-weight: 600; color: #92400E;' : '') };
+    });
+    var titles = { all: 'All active specimens', crit: 'Critical results awaiting callback', stat: 'STAT specimens', over: 'Over turnaround time',
+      chemA: 'On Chemistry A', chemB: 'Held from Chemistry B', heme: 'On Hematology 1', bf: 'On the body fluids bench' };
+    return {
+      total: d.length, places: places, stations: stations, pills: pills, rows: rows,
+      listTitle: titles[f], shown: rows.length, matching: matched.length    };
+  }
+}
+</script>
+</body>
+</html>

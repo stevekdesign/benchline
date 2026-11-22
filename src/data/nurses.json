@@ -1,0 +1,89 @@
+{
+  "note": "Fictional nurses for the demo.",
+  "nurses": [
+    {
+      "id": "ma0",
+      "name": "Maria Alvarez",
+      "initials": "MA",
+      "unit": "Emergency Dept",
+      "credential": "RN"
+    },
+    {
+      "id": "mt1",
+      "name": "Mae Thompson",
+      "initials": "MT",
+      "unit": "Emergency Dept",
+      "credential": "RN"
+    },
+    {
+      "id": "ps2",
+      "name": "Priya Shah",
+      "initials": "PS",
+      "unit": "Emergency Dept",
+      "credential": "RN"
+    },
+    {
+      "id": "jr3",
+      "name": "Jordan Reyes",
+      "initials": "JR",
+      "unit": "Emergency Dept",
+      "credential": "RN"
+    },
+    {
+      "id": "ml4",
+      "name": "Marcus Lin",
+      "initials": "ML",
+      "unit": "ICU 3",
+      "credential": "RN"
+    },
+    {
+      "id": "hb5",
+      "name": "Hannah Brooks",
+      "initials": "HB",
+      "unit": "ICU 3",
+      "credential": "RN"
+    },
+    {
+      "id": "do6",
+      "name": "Daniel Ortiz",
+      "initials": "DO",
+      "unit": "4 West",
+      "credential": "RN"
+    },
+    {
+      "id": "gk7",
+      "name": "Grace Kim",
+      "initials": "GK",
+      "unit": "4 West",
+      "credential": "RN"
+    },
+    {
+      "id": "so8",
+      "name": "Samuel Okafor",
+      "initials": "SO",
+      "unit": "3 East",
+      "credential": "RN"
+    },
+    {
+      "id": "lf9",
+      "name": "Lena Fischer",
+      "initials": "LF",
+      "unit": "3 East",
+      "credential": "RN"
+    },
+    {
+      "id": "tr10",
+      "name": "Tom\u00e1s Rivera",
+      "initials": "TR",
+      "unit": "Neuro",
+      "credential": "RN"
+    },
+    {
+      "id": "ab11",
+      "name": "Aisha Bello",
+      "initials": "AB",
+      "unit": "Ortho",
+      "credential": "RN"
+    }
+  ]
+}
