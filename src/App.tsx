@@ -1,19 +1,20 @@
 import { Route, Routes } from 'react-router';
-
-// Placeholder only — screens are built one at a time in src/screens/.
-function Placeholder() {
-  return (
-    <main style={{ padding: 'var(--page-padding)' }}>
-      <h1 style={{ fontSize: 'var(--font-size-title)', fontWeight: 700, margin: 0 }}>Benchline</h1>
-      <p style={{ color: 'var(--color-text-secondary)' }}>Project setup complete. Screens coming next.</p>
-    </main>
-  );
-}
+import AppShell from './components/AppShell';
+import { SpecimensProvider } from './lib/SpecimensContext';
+import SpecimenPlaceholder from './screens/SpecimenPlaceholder';
+import WorkQueue from './screens/WorkQueue';
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="*" element={<Placeholder />} />
-    </Routes>
+    <SpecimensProvider>
+      <Routes>
+        <Route element={<AppShell />}>
+          <Route index element={<WorkQueue />} />
+          <Route path="specimen/:orderId" element={<SpecimenPlaceholder />} />
+          <Route path="specimen/:orderId/callback" element={<SpecimenPlaceholder />} />
+          <Route path="*" element={<WorkQueue />} />
+        </Route>
+      </Routes>
+    </SpecimensProvider>
   );
 }

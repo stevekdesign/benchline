@@ -1,0 +1,46 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.app-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  padding: var(--space-3) var(--page-padding);
+}
+
+.app-logo {
+  min-height: var(--target-min);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.app-logo:hover {
+  color: var(--color-text);
+}
+
+.app-logo svg {
+  color: var(--color-brand);
+}
+
+.app-user {
+  margin-left: auto;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.app-user strong {
+  color: var(--color-text);
+}

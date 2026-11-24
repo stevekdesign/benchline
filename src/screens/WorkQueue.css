@@ -1,0 +1,34 @@
+.work-queue__list-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.work-queue__title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.work-queue__title h1 {
+  margin: 0;
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.work-queue__title p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.work-queue__title svg {
+  flex-shrink: 0;
+}

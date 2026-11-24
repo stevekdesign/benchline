@@ -1,0 +1,139 @@
+/* Fixed-height panel: the only part of the work queue that scrolls. */
+.table-panel {
+  height: 472px;
+  flex-shrink: 0;
+  overflow: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.specimen-table {
+  width: 100%;
+  min-width: 1266px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.specimen-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px var(--space-4);
+  text-align: left;
+  white-space: nowrap;
+  font-size: var(--font-size-label-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+}
+
+.specimen-table td {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Action column: tight padding so the button fits in 116px. */
+.specimen-table th.col-action {
+  padding: 10px var(--space-3) 10px var(--space-1);
+}
+
+.specimen-table td.col-action {
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-1);
+}
+
+/* Zebra striping follows the visible order; critical rows use the critical tint instead. */
+.specimen-table tbody tr {
+  background: var(--color-surface);
+}
+
+.specimen-table tr.row--striped {
+  background: var(--color-row-zebra);
+}
+
+.specimen-table tr.row--critical {
+  background: var(--color-critical-surface);
+}
+
+.order-link {
+  font-weight: 500;
+}
+
+.badge-stat {
+  font-size: var(--font-size-label-sm);
+  font-weight: 700;
+  color: var(--color-stat-text);
+  background: var(--color-stat-surface);
+  border-radius: 6px;
+  padding: 3px var(--space-2);
+}
+
+.priority-routine {
+  font-size: var(--font-size-label-sm);
+  color: var(--color-text-secondary);
+}
+
+.status {
+  font-size: var(--font-size-label);
+}
+
+.status--critical {
+  font-weight: 600;
+  color: var(--color-critical-text);
+}
+
+.status--warning {
+  font-weight: 600;
+  color: var(--color-warning-text);
+}
+
+.status--success {
+  color: var(--color-success-text);
+}
+
+.status--neutral {
+  color: var(--color-text-strong);
+}
+
+.cell-received {
+  color: var(--color-text-secondary);
+}
+
+.cell-over {
+  font-weight: 600;
+  color: var(--color-warning-text);
+}
+
+.btn-callback {
+  display: inline-flex;
+  align-items: center;
+  height: var(--target-compact);
+  padding: 0 10px;
+  border-radius: var(--radius-small);
+  background: var(--color-critical-button);
+  color: var(--color-surface);
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-callback:hover {
+  background: var(--color-critical-text-strong);
+  color: var(--color-surface);
+}
+
+.specimen-table td.specimen-table__empty {
+  padding: 48px var(--space-4);
+  text-align: center;
+  white-space: normal;
+  color: var(--color-text-secondary);
+}

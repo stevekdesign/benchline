@@ -1,0 +1,98 @@
+.stations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+}
+
+.stations__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.station-card {
+  /* Status dot colors come from design-reference/work-queue.html.
+     They aren't in the CLAUDE.md token list yet, so they live here. */
+  --dot: #16a34a;
+  --name-color: var(--color-text-secondary);
+  --line-color: var(--color-text);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  min-height: var(--target-min);
+  padding: 14px var(--space-4);
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.station-card:hover {
+  border-color: var(--color-input-border);
+}
+
+.station-card--down {
+  --dot: #dc2626;
+  --name-color: var(--color-critical-text);
+  --line-color: var(--color-critical-text-strong);
+  background: var(--color-critical-surface);
+  border-color: var(--color-critical-border);
+}
+
+.station-card--down:hover {
+  border-color: var(--color-critical-text);
+}
+
+.station-card--busy {
+  --dot: #d97706;
+  --line-color: var(--color-warning-text);
+}
+
+/* Selected: 2px dark border. Drawn as border + inset shadow so the card never shifts. */
+.station-card[aria-pressed='true'] {
+  border-color: var(--color-text);
+  box-shadow: inset 0 0 0 1px var(--color-text);
+}
+
+.station-card__name {
+  font-size: var(--font-size-label);
+  color: var(--name-color);
+}
+
+.station-card__line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-section-sm);
+  font-weight: 600;
+  color: var(--line-color);
+  font-variant-numeric: tabular-nums;
+}
+
+/* If a line wraps (narrow cards), split it evenly instead of leaving one word alone. */
+.station-card__text {
+  text-wrap: balance;
+}
+
+/* Centered on the first line of text, so it stays put when the line wraps. */
+.station-card__dot {
+  flex-shrink: 0;
+  margin-top: calc((1lh - 8px) / 2);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot);
+}
