@@ -10,7 +10,18 @@ export function toMinutes(hhmm: string): number {
 /** The demo clock is fixed, so durations always match the designs. */
 export const demoNowMinutes = toMinutes(demoClock);
 
+/** Minutes from a time ("08:21") until the demo clock. */
+export function minutesAgo(hhmm: string): number {
+  return demoNowMinutes - toMinutes(hhmm);
+}
+
 /** "In lab" = demo clock − received. */
 export function minutesInLab(specimen: Specimen): number {
-  return demoNowMinutes - toMinutes(specimen.receivedAt);
+  return minutesAgo(specimen.receivedAt);
+}
+
+/** "21 min ago", or "just now" for the current minute. */
+export function agoText(hhmm: string): string {
+  const n = minutesAgo(hhmm);
+  return n <= 0 ? 'just now' : `${n} min ago`;
 }

@@ -1,0 +1,132 @@
+.nurse-picker {
+  /* Colors from design-reference/critical-callback.html that aren't in the token list yet. */
+  --row-divider: #eef2f6;
+  --avatar-bg: #ccfbf1;
+  --selected-bg: #f0fdfa;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nurse-picker__label {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+}
+
+.nurse-picker__input {
+  height: 48px;
+  padding: 0 14px;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-control);
+  font-size: 16px;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.nurse-picker__input:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.nurse-picker__input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.nurse-picker__hint {
+  font-size: var(--font-size-label);
+  color: var(--color-text-secondary);
+}
+
+.nurse-picker__box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+/* About four rows visible; the rest scroll inside the box. */
+.nurse-picker__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 232px;
+  overflow-y: auto;
+}
+
+.nurse-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid var(--row-divider);
+  background: var(--color-surface);
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.nurse-picker__list li:last-child .nurse-option {
+  border-bottom: none;
+}
+
+.nurse-option:hover,
+.nurse-option--active {
+  background: var(--color-bg);
+}
+
+/* Keyboard highlight also gets an inset ring, so it's not shown by color alone. */
+.nurse-option--active {
+  box-shadow: inset 0 0 0 2px var(--color-brand);
+}
+
+.nurse-option[aria-selected='true'] {
+  background: var(--selected-bg);
+}
+
+.nurse-option__avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  color: var(--color-brand-hover);
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nurse-option__text {
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.nurse-option__name {
+  font-size: var(--font-size-section-sm);
+  font-weight: 600;
+}
+
+.nurse-option__meta {
+  font-size: var(--font-size-label);
+  color: var(--color-text-secondary);
+}
+
+.nurse-option__check {
+  flex-shrink: 0;
+  color: var(--color-brand);
+}
+
+.nurse-picker__empty {
+  margin: 0;
+  padding: 14px;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}

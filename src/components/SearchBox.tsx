@@ -1,6 +1,6 @@
 // Header search. Typing filters the work queue table; Enter opens a single match.
 import type { KeyboardEvent } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { findExactOrder, searchByOrder } from '../lib/queue';
 import { useSpecimens } from '../lib/SpecimensContext';
 import './SearchBox.css';
@@ -15,18 +15,10 @@ interface Props {
 export default function SearchBox({ query, setQuery }: Props) {
   const { specimens } = useSpecimens();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   function openSpecimen(orderId: string) {
     setQuery('');
     navigate(`/specimen/${orderId}`);
-  }
-
-  // Typing only filters the table; it never navigates on its own.
-  function handleChange(value: string) {
-    setQuery(value);
-    // Partial input filters the work queue, so bring the user there.
-    if (value.trim() && pathname !== '/') navigate('/');
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
@@ -48,7 +40,8 @@ export default function SearchBox({ query, setQuery }: Props) {
         type="search"
         placeholder="Scan or type order # to find a specimen"
         value={query}
-        onChange={(e) => handleChange(e.target.value)}
+        // Typing only filters the table; it never navigates on its own.
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         autoComplete="off"
         spellCheck={false}

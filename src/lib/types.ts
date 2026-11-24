@@ -40,6 +40,7 @@ export interface CriticalResult {
 export interface Callback {
   nurseId: string;
   nurseName: string;
+  nurseCredential: string;
   at: string;
   readBack: boolean;
 }

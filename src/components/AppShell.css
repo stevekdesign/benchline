@@ -35,6 +35,16 @@
   color: var(--color-brand);
 }
 
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--target-min);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .app-user {
   margin-left: auto;
   font-size: var(--font-size-body);

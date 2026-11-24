@@ -1,0 +1,114 @@
+.side-panel {
+  flex: 1 1 340px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.side-card {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.side-card--tight {
+  gap: 6px;
+}
+
+.side-card__place {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.side-card__spot {
+  font-size: var(--font-size-section-sm);
+  color: var(--color-text-strong);
+}
+
+.side-card__note {
+  font-size: var(--font-size-label);
+  color: var(--color-text-secondary);
+}
+
+.side-card__tat {
+  font-size: var(--font-size-section-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.side-card__over {
+  font-weight: 600;
+  color: var(--color-warning-text);
+}
+
+.side-card__body {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+/* Critical result card */
+.side-card--critical {
+  gap: var(--space-3);
+  background: var(--color-critical-surface);
+  border: 1px solid var(--color-critical-border);
+  border-radius: var(--radius-card);
+  color: var(--color-critical-text-strong);
+}
+
+.eyebrow--critical {
+  color: var(--color-critical-text);
+}
+
+.critical-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--font-size-section-sm);
+}
+
+.critical-value strong {
+  font-size: 28px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.critical-limit {
+  font-size: var(--font-size-body);
+}
+
+.btn-critical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: var(--radius-control);
+  background: var(--color-critical-button);
+  color: var(--color-surface);
+  font-size: var(--font-size-section-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-critical:hover {
+  background: var(--color-critical-text-strong);
+  color: var(--color-surface);
+}
+
+/* Shown in place of the button once the callback is logged. Same height, so nothing shifts. */
+.callback-done {
+  margin: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 14px;
+  border-radius: var(--radius-control);
+  background: var(--color-success-surface);
+  color: var(--color-success-text);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+}
+
+.callback-done svg {
+  flex-shrink: 0;
+}

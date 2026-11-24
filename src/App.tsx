@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router';
 import AppShell from './components/AppShell';
+import CallbackDialog from './components/CallbackDialog';
 import { SpecimensProvider } from './lib/SpecimensContext';
-import SpecimenPlaceholder from './screens/SpecimenPlaceholder';
+import SpecimenTimeline from './screens/SpecimenTimeline';
 import WorkQueue from './screens/WorkQueue';
 
 export default function App() {
@@ -10,8 +11,10 @@ export default function App() {
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<WorkQueue />} />
-          <Route path="specimen/:orderId" element={<SpecimenPlaceholder />} />
-          <Route path="specimen/:orderId/callback" element={<SpecimenPlaceholder />} />
+          <Route path="specimen/:orderId" element={<SpecimenTimeline />}>
+            {/* Opens as a modal on top of the timeline, which stays mounted underneath. */}
+            <Route path="callback" element={<CallbackDialog />} />
+          </Route>
           <Route path="*" element={<WorkQueue />} />
         </Route>
       </Routes>

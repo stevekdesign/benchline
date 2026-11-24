@@ -42,7 +42,8 @@ export default function WorkQueue() {
 
       <div className="work-queue__list-head">
         <div className="work-queue__title">
-          <h1>{listTitle(filter)}</h1>
+          {/* tabIndex -1: focusable from code (after "Reset demo"), not in the Tab order. */}
+          <h1 tabIndex={-1}>{listTitle(filter)}</h1>
           <p>
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 6h13M3 12h9M3 18h5" />

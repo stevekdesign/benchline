@@ -1,9 +1,9 @@
 // Footer note shown on every screen, plus the "Reset demo" action.
-import { useSpecimens } from '../lib/SpecimensContext';
+import { useShell } from './AppShell';
 import './Footer.css';
 
 export default function Footer({ extra }: { extra?: string }) {
-  const { resetDemo } = useSpecimens();
+  const { resetDemo } = useShell();
   return (
     <footer className="app-footer">
       <p>

@@ -9,12 +9,12 @@ import {
   saveCallbacks,
   type LoggedCallbacks,
 } from './callbacks';
-import type { Specimen } from './types';
+import type { Nurse, Specimen } from './types';
 
 interface SpecimensValue {
   specimens: Specimen[];
   getSpecimen: (orderId: string) => Specimen | undefined;
-  logCallback: (orderId: string, nurseId: string, nurseName: string) => void;
+  logCallback: (orderId: string, nurse: Nurse) => void;
   resetDemo: () => void;
 }
 
@@ -23,9 +23,9 @@ const SpecimensContext = createContext<SpecimensValue | null>(null);
 export function SpecimensProvider({ children }: { children: ReactNode }) {
   const [logged, setLogged] = useState<LoggedCallbacks>(loadCallbacks);
 
-  const logCallback = useCallback((orderId: string, nurseId: string, nurseName: string) => {
+  const logCallback = useCallback((orderId: string, nurse: Nurse) => {
     setLogged((prev) => {
-      const next = { ...prev, [orderId]: newCallback(nurseId, nurseName) };
+      const next = { ...prev, [orderId]: newCallback(nurse) };
       saveCallbacks(next);
       return next;
     });

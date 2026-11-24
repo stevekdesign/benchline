@@ -4,15 +4,6 @@
   gap: 10px;
 }
 
-.eyebrow {
-  margin: 0;
-  font-size: var(--font-size-label);
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-caps);
-}
-
 .stations__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

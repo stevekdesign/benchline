@@ -1,0 +1,36 @@
+.specimen-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.specimen-head__title {
+  margin: 0;
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.specimen-head__stat {
+  font-size: var(--font-size-label-sm);
+  font-weight: 700;
+  color: var(--color-stat-text);
+  background: var(--color-stat-surface);
+  border-radius: 6px;
+  padding: var(--space-1) var(--space-2);
+}
+
+.specimen-head__meta {
+  margin: 0;
+  font-size: var(--font-size-section-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Timeline on the left, side panel on the right; stacks when narrow. */
+.specimen-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--section-gap);
+  align-items: flex-start;
+}
