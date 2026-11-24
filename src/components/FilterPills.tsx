@@ -19,7 +19,8 @@ interface Props {
 export default function FilterPills({ specimens, filter, setFilter }: Props) {
   const counts = pillCounts(specimens);
   return (
-    <div role="group" aria-label="Filter" className="pills">
+    // Counts always cover every specimen (not just the current search), and the label says so.
+    <div role="group" aria-label={`Filter. Counts include all ${specimens.length} specimens`} className="pills">
       {PILLS.map((p) => (
         <button
           key={p.key}

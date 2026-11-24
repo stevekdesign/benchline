@@ -18,6 +18,7 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
   const [active, setActive] = useState(-1);
   const listId = useId();
   const hintId = useId();
+  const labelId = useId();
   const matches = matchNurses(query, orderingUnit);
   const optionId = (n: Nurse) => `${listId}-${n.id}`;
   const activeNurse = active >= 0 ? matches[active] : undefined;
@@ -56,13 +57,14 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
 
   return (
     <div className="nurse-picker">
-      <label htmlFor={inputId} className="nurse-picker__label">
+      <label htmlFor={inputId} id={labelId} className="nurse-picker__label">
         Who did you speak with?
       </label>
       <input
         id={inputId}
         type="text"
         role="combobox"
+        aria-labelledby={labelId}
         aria-expanded="true"
         aria-controls={listId}
         aria-autocomplete="list"
@@ -92,6 +94,8 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
                   type="button"
                   role="option"
                   id={optionId(n)}
+                  // Starts with the visible name; selected state comes from aria-selected.
+                  aria-label={`${n.name}, ${n.credential}, initials ${n.initials}, ${n.unit}`}
                   aria-selected={selected}
                   tabIndex={-1}
                   className={`nurse-option${i === active ? ' nurse-option--active' : ''}`}

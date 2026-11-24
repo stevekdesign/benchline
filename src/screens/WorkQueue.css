@@ -13,7 +13,15 @@
   min-width: 0;
 }
 
+.work-queue__title-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
 .work-queue__title h1 {
+  flex-shrink: 0;
   margin: 0;
   font-size: var(--font-size-title);
   font-weight: 700;

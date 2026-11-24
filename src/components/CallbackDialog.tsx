@@ -2,7 +2,8 @@
 // Uses the native <dialog> in modal mode: the page behind is inert, Esc closes it.
 // On top of that, Tab is looped inside the dialog so focus can never leave it.
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
+import { focusOrderState, openedFromQueue } from '../lib/navState';
 import { demoClock } from '../lib/data';
 import { useSpecimens } from '../lib/SpecimensContext';
 import { resultText } from '../lib/timeline';
@@ -27,7 +28,13 @@ export default function CallbackDialog() {
   const successRef = useRef<HTMLHeadingElement>(null);
 
   const timelinePath = `/specimen/${orderId}`;
-  const close = () => navigate(timelinePath);
+  // Return where the dialog was opened from: the work queue, or the timeline.
+  // "replace" swaps out the dialog's history entry, so the browser's Back button won't reopen it.
+  const fromQueue = openedFromQueue(useLocation().state);
+  const close = () =>
+    fromQueue
+      ? navigate('/', { replace: true, state: focusOrderState(orderId) })
+      : navigate(timelinePath, { replace: true });
 
   // Open as a modal, focus the nurse search, and stop the page behind from scrolling.
   useEffect(() => {
@@ -122,7 +129,7 @@ export default function CallbackDialog() {
             <span className="mono">{demoClock}</span>. Read-back confirmed. Added to the specimen timeline.
           </p>
           <button type="button" className="btn-primary" onClick={close}>
-            Back to specimen
+            {fromQueue ? 'Back to work queue' : 'Back to specimen'}
           </button>
         </div>
       ) : (
@@ -134,8 +141,15 @@ export default function CallbackDialog() {
             onPick={setPicked}
           />
 
-          <label className="readback">
-            <input type="checkbox" checked={readBack} onChange={(e) => setReadBack(e.target.checked)} />
+          {/* Explicitly connected (htmlFor + id) as well as wrapping, so the whole row is clickable. */}
+          <label className="readback" htmlFor="readback-check">
+            <input
+              id="readback-check"
+              type="checkbox"
+              required
+              checked={readBack}
+              onChange={(e) => setReadBack(e.target.checked)}
+            />
             Nurse read the result back to me
           </label>
 

@@ -1,5 +1,6 @@
 // Specimen table. Fixed column widths, sticky header, zebra rows that follow the visible order.
 import { Link } from 'react-router';
+import { FROM_QUEUE } from '../lib/navState';
 import { isCriticalDue, locationText, statusText } from '../lib/queue';
 import { minutesInLab } from '../lib/time';
 import type { Specimen } from '../lib/types';
@@ -62,7 +63,7 @@ function Row({ specimen: s, striped }: { specimen: Specimen; striped: boolean })
   const rowClass = critical ? 'row--critical' : striped ? 'row--striped' : undefined;
 
   return (
-    <tr className={rowClass}>
+    <tr className={rowClass} data-order-id={s.orderId}>
       <td className="mono">
         <Link to={`/specimen/${s.orderId}`} className="order-link">
           {s.orderId}
@@ -86,6 +87,7 @@ function Row({ specimen: s, striped }: { specimen: Specimen; striped: boolean })
         {critical ? (
           <Link
             to={`/specimen/${s.orderId}/callback`}
+            state={FROM_QUEUE} // so the dialog returns to the work queue when closed
             className="btn-callback"
             aria-label={`Log callback for ${s.orderId}`}
           >

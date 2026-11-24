@@ -1,0 +1,46 @@
+/* Sits on the title's line, so showing or hiding it never changes the page height. */
+.search-status {
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  white-space: nowrap;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.search-status__count {
+  display: inline-flex;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Long searches are shortened with "…"; the full text is in the tooltip. */
+.search-status__query {
+  display: inline-block;
+  max-width: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  font-family: var(--font-mono);
+}
+
+/* Text-link look, but it's an action. Padding + negative margin = 44px target, no extra height. */
+.search-status__clear {
+  margin: -12px -8px;
+  padding: 12px 8px;
+  border: none;
+  background: none;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.search-status__clear:hover {
+  color: var(--color-brand-hover);
+}

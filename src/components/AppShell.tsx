@@ -30,15 +30,24 @@ export default function AppShell() {
   // Work queue shows search; specimen screens show a way back instead (per the designs).
   const onWorkQueue = useLocation().pathname === '/';
   const focusAfterReset = useRef(false);
+  const [toastVisible, setToastVisible] = useState(false);
 
   function resetDemo() {
     clearLoggedCallbacks();
     setQuery('');
     setFilter('all');
     setResetCount((n) => n + 1);
+    setToastVisible(true);
     focusAfterReset.current = true;
     navigate('/');
   }
+
+  // "Demo reset" toast: visible for about 3 seconds; a new reset restarts the timer.
+  useEffect(() => {
+    if (!toastVisible) return;
+    const timer = window.setTimeout(() => setToastVisible(false), 3000);
+    return () => window.clearTimeout(timer);
+  }, [toastVisible, resetCount]);
 
   // Once the work queue is showing after a reset: back to the top, and move focus to the
   // page title so keyboard and screen-reader users aren't left on a button that's gone.
@@ -73,9 +82,18 @@ export default function AppShell() {
           Core Lab · Day shift · <strong>K. Lee, CLS</strong>
         </span>
       </header>
-      <p className="sr-only" role="status">
-        {resetCount > 0 ? 'Demo reset' : ''}
-      </p>
+      {/* Always in the page so screen readers announce what appears in it. */}
+      <div className="toast-region" role="status">
+        {toastVisible ? (
+          // key: each reset is a new toast, so it's announced again.
+          <div key={resetCount} className="toast">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12l5 5L20 7" />
+            </svg>
+            Demo reset
+          </div>
+        ) : null}
+      </div>
       <Outlet key={resetCount} context={{ query, setQuery, filter, setFilter, resetDemo } satisfies ShellState} />
     </div>
   );

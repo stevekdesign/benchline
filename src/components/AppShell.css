@@ -45,6 +45,38 @@
   text-decoration: none;
 }
 
+/* "Demo reset" toast, bottom center, above everything. Doesn't take focus or block clicks. */
+.toast-region {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-6);
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+  animation: toast-in 0.2s ease-out;
+}
+
+/* Turned off automatically under prefers-reduced-motion (see base.css). */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
 .app-user {
   margin-left: auto;
   font-size: var(--font-size-body);
