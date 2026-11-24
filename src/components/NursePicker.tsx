@@ -3,6 +3,7 @@
 import { useEffect, useId, useState, type KeyboardEvent } from 'react';
 import { matchNurses, orderingUnitOf } from '../lib/nurses';
 import type { Nurse } from '../lib/types';
+import ScrollPanel from './ScrollPanel';
 import './NursePicker.css';
 
 interface Props {
@@ -79,7 +80,9 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
         Nurses on the ordering unit ({short}) are listed first
       </span>
 
-      <div className="nurse-picker__box">
+      {/* Same floating scrollbar as the work queue table. Not a focusable region:
+          the list is already operated from the search box (↑/↓, Enter). */}
+      <ScrollPanel className="nurse-picker__box" viewportClassName="nurse-picker__viewport">
         <ul role="listbox" id={listId} aria-label="Matching nurses" className="nurse-picker__list">
           {matches.map((n, i) => {
             const selected = picked?.id === n.id;
@@ -120,7 +123,7 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
         {matches.length === 0 ? (
           <p className="nurse-picker__empty">No match. Check spelling, or add a name manually.</p>
         ) : null}
-      </div>
+      </ScrollPanel>
       <p className="sr-only" aria-live="polite">
         {matches.length} {matches.length === 1 ? 'nurse' : 'nurses'} found
       </p>

@@ -13,14 +13,20 @@ const CROSS = 10; // room left for the other bar when both show
 
 interface Props {
   className?: string;
-  /** Accessible name of the scroll region, e.g. "Specimen list, scrollable". */
-  label: string;
+  /** Extra class for the scrolling element, e.g. to give it a max-height. */
+  viewportClassName?: string;
+  /**
+   * Accessible name, e.g. "Specimen list, scrollable". When given, the panel is a focusable
+   * region so keyboard users can scroll it. Leave it out when the content is already
+   * keyboard-operable another way (e.g. a listbox driven from a search box).
+   */
+  label?: string;
   children: ReactNode;
 }
 
 type Axis = 'x' | 'y';
 
-export default function ScrollPanel({ className = '', label, children }: Props) {
+export default function ScrollPanel({ className = '', viewportClassName = '', label, children }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const yRef = useRef<HTMLDivElement>(null);
@@ -133,7 +139,12 @@ export default function ScrollPanel({ className = '', label, children }: Props) 
 
   return (
     <div ref={panelRef} className={`scroll-panel ${className}`}>
-      <div ref={viewportRef} className="scroll-panel__viewport" tabIndex={0} role="region" aria-label={label}>
+      <div
+        ref={viewportRef}
+        className={`scroll-panel__viewport ${viewportClassName}`}
+        // No label: explicitly not a Tab stop (browsers otherwise make scrollable boxes focusable).
+        {...(label ? { tabIndex: 0, role: 'region', 'aria-label': label } : { tabIndex: -1 })}
+      >
         {children}
       </div>
       <div ref={yRef} className="scroll-panel__thumb scroll-panel__thumb--y" aria-hidden="true" hidden />
