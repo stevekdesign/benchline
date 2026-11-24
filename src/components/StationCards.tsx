@@ -46,6 +46,9 @@ export default function StationCards({ specimens, filter, setFilter }: Props) {
               key={station.id}
               type="button"
               className={`station-card station-card--${tone}`}
+              // Starts with the visible text (station + status line), then says what it does.
+              // aria-pressed tells assistive tech whether this filter is on.
+              aria-label={`${station.name}: ${line}. Filter the specimen list`}
               aria-pressed={active}
               onClick={() => setFilter(active ? 'all' : key)}
             >

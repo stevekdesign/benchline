@@ -1,0 +1,94 @@
+.scroll-panel {
+  position: relative;
+  overflow: hidden; /* clips content to the rounded corners */
+}
+
+/* The real scroll container. Its own scrollbars are hidden; ours float on top. */
+.scroll-panel__viewport {
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+/* Older Safari, which predates scrollbar-width. */
+@supports not (scrollbar-width: none) {
+  .scroll-panel__viewport::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Focus ring drawn on the panel itself, since the panel clips anything drawn outside the viewport. */
+.scroll-panel__viewport:focus-visible {
+  outline: none;
+}
+
+.scroll-panel:has(> .scroll-panel__viewport:focus-visible) {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.scroll-panel__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* above the sticky table header */
+  border-radius: var(--radius-pill);
+  background: var(--color-text-secondary);
+  opacity: 0.35;
+  touch-action: none;
+  cursor: grab;
+  transition:
+    opacity 0.2s,
+    width 0.15s,
+    height 0.15s;
+}
+
+.scroll-panel__thumb[hidden] {
+  display: none;
+}
+
+.scroll-panel__thumb--y {
+  left: auto;
+  right: 3px;
+  width: 6px;
+}
+
+.scroll-panel__thumb--x {
+  top: auto;
+  bottom: 3px;
+  height: 6px;
+}
+
+/* Stronger while scrolling, hovering the panel, or dragging; wider while hovering the thumb itself. */
+.scroll-panel:hover .scroll-panel__thumb,
+.scroll-panel.is-scrolling .scroll-panel__thumb,
+.scroll-panel.is-dragging .scroll-panel__thumb {
+  opacity: 0.6;
+}
+
+.scroll-panel__thumb--y:hover,
+.scroll-panel.is-dragging .scroll-panel__thumb--y {
+  width: 10px;
+}
+
+.scroll-panel__thumb--x:hover,
+.scroll-panel.is-dragging .scroll-panel__thumb--x {
+  height: 10px;
+}
+
+.scroll-panel.is-dragging .scroll-panel__thumb {
+  cursor: grabbing;
+  opacity: 0.8;
+}
+
+/* Windows high-contrast mode: bring back the browser's own scrollbars. */
+@media (forced-colors: active) {
+  .scroll-panel__viewport {
+    scrollbar-width: auto;
+    scrollbar-gutter: stable;
+  }
+
+  .scroll-panel__thumb {
+    display: none;
+  }
+}

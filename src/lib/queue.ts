@@ -87,11 +87,20 @@ export function urgencyRank(s: Specimen): number {
   return 3;
 }
 
-/** Most urgent first; ties go to whichever has been in the lab longest. */
+/** Among critical callbacks only, STAT comes before Routine (0 = first). */
+function criticalStatOrder(s: Specimen): number {
+  return isCriticalDue(s) && !isStat(s) ? 1 : 0;
+}
+
+/**
+ * Most urgent first. Critical callbacks: STAT before Routine.
+ * Ties go to whichever has been in the lab longest.
+ */
 export function sortByUrgency(list: Specimen[]): Specimen[] {
   return [...list].sort(
     (a, b) =>
       urgencyRank(a) - urgencyRank(b) ||
+      criticalStatOrder(a) - criticalStatOrder(b) ||
       minutesInLab(b) - minutesInLab(a) ||
       a.orderId.localeCompare(b.orderId),
   );

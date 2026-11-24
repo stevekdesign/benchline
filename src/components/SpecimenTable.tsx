@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { isCriticalDue, locationText, statusText } from '../lib/queue';
 import { minutesInLab } from '../lib/time';
 import type { Specimen } from '../lib/types';
+import ScrollPanel from './ScrollPanel';
 import './SpecimenTable.css';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 
 export default function SpecimenTable({ rows, emptyMessage }: Props) {
   return (
-    <div className="table-panel" tabIndex={0} role="region" aria-label="Specimen list, scrollable">
+    <ScrollPanel className="table-panel" label="Specimen list, scrollable">
       <table className="specimen-table">
         <colgroup>
           <col style={{ width: 112 }} />
@@ -50,7 +51,7 @@ export default function SpecimenTable({ rows, emptyMessage }: Props) {
           )}
         </tbody>
       </table>
-    </div>
+    </ScrollPanel>
   );
 }
 
