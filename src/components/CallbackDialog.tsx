@@ -51,6 +51,17 @@ export default function CallbackDialog() {
     };
   }, []);
 
+  // Tab title. Over the timeline, the timeline sets it. Over the work queue, the dialog sets it
+  // here and puts the work queue's title back when it closes.
+  useEffect(() => {
+    if (!fromQueue) return;
+    const previous = document.title;
+    document.title = 'Benchline — Log critical callback';
+    return () => {
+      document.title = previous;
+    };
+  }, [fromQueue]);
+
   // After logging, move focus to the success message so it's announced.
   useEffect(() => {
     if (done) successRef.current?.focus();

@@ -45,11 +45,12 @@
   text-decoration: none;
 }
 
-/* "Demo reset" toast, bottom center, above everything. Doesn't take focus or block clicks. */
+/* "Demo reset" toast, bottom center, above everything. Doesn't take focus or block clicks.
+   Sits 64px up, clear of the footer note (which ends ~20px above the bottom at 1440×980). */
 .toast-region {
   position: fixed;
   left: 50%;
-  bottom: var(--space-6);
+  bottom: 64px;
   z-index: 10;
   transform: translateX(-50%);
   pointer-events: none;

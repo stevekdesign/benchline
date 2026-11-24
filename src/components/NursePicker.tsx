@@ -17,8 +17,9 @@ export default function NursePicker({ inputId, orderingUnit, picked, onPick }: P
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(-1);
   const listId = useId();
-  const hintId = useId();
-  const labelId = useId();
+  // Plain, predictable ids derived from the input's id, so label ↔ input is easy to verify.
+  const labelId = `${inputId}-label`;
+  const hintId = `${inputId}-hint`;
   const matches = matchNurses(query, orderingUnit);
   const optionId = (n: Nurse) => `${listId}-${n.id}`;
   const activeNurse = active >= 0 ? matches[active] : undefined;
